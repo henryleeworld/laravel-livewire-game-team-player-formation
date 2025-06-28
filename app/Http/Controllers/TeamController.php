@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\DB;
 
 class TeamController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
         $teams = Team::with('users')->get();
@@ -16,6 +19,9 @@ class TeamController extends Controller
         return view('teams.index', compact('teams'));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     */
     public function create()
     {
         return view('teams.create', [
@@ -23,6 +29,9 @@ class TeamController extends Controller
         ]);
     }
 
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(StoreTeamRequest $request)
     {
         DB::transaction(function() use ($request) {
@@ -45,6 +54,9 @@ class TeamController extends Controller
         return redirect()->route('teams.index');
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     */
     public function edit(Team $team)
     {
         $team->load(['users']);
@@ -61,6 +73,9 @@ class TeamController extends Controller
         ]);
     }
 
+    /**
+     * Update the specified resource in storage.
+     */
     public function update(StoreTeamRequest $request, Team $team)
     {
         DB::transaction(function() use ($team, $request) {
@@ -82,6 +97,9 @@ class TeamController extends Controller
         return redirect()->route('teams.index');
     }
 
+    /**
+     * Remove the specified resource from storage.
+     */
     public function destroy(Team $team)
     {
         $team->delete();

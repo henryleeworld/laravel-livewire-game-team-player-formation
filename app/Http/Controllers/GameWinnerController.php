@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 
 class GameWinnerController extends Controller
 {
+    /**
+     * Show the form for editing the specified resource.
+     */
     public function edit(Game $game)
     {
         $game->load(['users']);
@@ -21,6 +24,9 @@ class GameWinnerController extends Controller
         return view('games.winners', compact('game', 'places'));
     }
 
+    /**
+     * Update the specified resource in storage.
+     */
     public function update(StoreGameWinnerRequest $request, Game $game)
     {
         $game->load(['users']);

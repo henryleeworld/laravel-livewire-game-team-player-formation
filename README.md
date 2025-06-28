@@ -1,4 +1,4 @@
-# Laravel 10 Livewire 遊戲玩家組隊
+# Laravel 11 Livewire 遊戲玩家組隊
 
 每個人玩遊戲的心態不同，有些人當狀況對自己不利的時候，反而能夠以更好的表現去應付，但是這種人相對地少，這也是我們在挑選玩家時最渴望看見的人格特質，勇於面對自己的不足，檢討失誤會更進步，把細節做好做滿，就能為團隊製造出無形優勢。
 
@@ -35,8 +35,8 @@ $ npm run build
 ----
 
 ## 畫面截圖
-![](https://i.imgur.com/rze7xxX.png)
+![](https://i.imgur.com/02kThBd.png)
 > 選擇使用者加入團隊
 
-![](https://i.imgur.com/L7bKBVt.png)
+![](https://i.imgur.com/PezSm8H.png)
 > 選擇使用者同時設定位置加入團隊

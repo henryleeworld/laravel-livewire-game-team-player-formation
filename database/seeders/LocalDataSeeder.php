@@ -7,8 +7,11 @@ use Illuminate\Database\Seeder;
 
 class LocalDataSeeder extends Seeder
 {
-    public function run()
+    /**
+     * Run the database seeders.
+     */
+    public function run(): void
     {
-        User::factory()->count(19)->create();
+        User::factory()->count(20)->create();
     }
 }

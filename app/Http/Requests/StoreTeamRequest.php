@@ -17,7 +17,7 @@ class StoreTeamRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
@@ -29,14 +29,19 @@ class StoreTeamRequest extends FormRequest
         ];
     }
 
-    public function messages()
+    /**
+     * Get custom messages for validator errors.
+     *
+     * @return array
+     */
+    public function messages(): array
     {
         return [
-            'players.*.id.required' => 'The player field is required.',
-            'players.*.id.exists' => 'The selected player is invalid.',
-            'players.*.id.distinct' => 'Player cannot be selected twice',
-            'players.*.position.required' => 'Player position is required',
-            'players.*.position.distinct' => 'Player positions must be unique',
+            'players.*.id.required' => __('The player field is required.'),
+            'players.*.id.exists' => __('The selected player is invalid.'),
+            'players.*.id.distinct' => __('Player cannot be selected twice'),
+            'players.*.position.required' => __('Player position is required'),
+            'players.*.position.distinct' => __('Player positions must be unique'),
         ];
     }
 }
