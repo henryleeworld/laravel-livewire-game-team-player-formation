@@ -26,27 +26,42 @@ class TeamPlayerSelection extends Component
         'position' => ""
     ];
 
-    protected $rules = [
-        'players' => ['required', 'array', 'min:3', 'max:10'],
-        'players.*.id' => ['required', 'exists:users,id', 'integer', 'distinct'],
-        'players.*.position' => ['required', 'string', 'max:200', 'distinct'],
-    ];
-
-    protected $messages = [
-        'players.*.id.required' => 'The player field is required.',
-        'players.*.id.exists' => 'The selected player is invalid.',
-        'players.*.id.distinct' => 'Player cannot be selected twice',
-        'players.*.position.required' => 'Player position is required',
-        'players.*.position.distinct' => 'Player positions must be unique',
-    ];
-
-    public function updated($propertyName)
+    protected function rules(): array
     {
-        $this->validate();
+        return [
+            'players' => [
+                'required',
+                'array',
+                'min:3',
+                'max:10',
+            ],
+            'players.*.id' => [
+                'required',
+                'exists:users,id',
+                'integer',
+                'distinct',
+            ],
+            'players.*.position' => [
+                'required',
+                'string',
+                'max:200',
+                'distinct',
+            ],
+        ];
     }
 
+    protected function messages(): array
+    {
+        return [
+            'players.*.id.required' => __('The player field is required.'),
+            'players.*.id.exists' => __('The selected player is invalid.'),
+            'players.*.id.distinct' => __('Player cannot be selected twice.'),
+            'players.*.position.required' => __('Player position is required.'),
+            'players.*.position.distinct' => __('Player positions must be unique.'),
+        ];
+    }
 
-    public function mount()
+    public function mount(): void
     {
         $this->users = User::pluck('name', 'id')->toArray();
         if (count(old('players', [])) > 0) {
@@ -67,9 +82,9 @@ class TeamPlayerSelection extends Component
         }
     }
 
-    public function render()
+    public function updated($propertyName): void
     {
-        return view('livewire.team-player-selection');
+        $this->validate();
     }
 
     public function addUser(): void
@@ -78,9 +93,14 @@ class TeamPlayerSelection extends Component
         $this->validate();
     }
 
-    public function removeUser($index)
+    public function removeUser(int $index)
     {
         unset($this->players[$index]);
         $this->validate();
+    }
+
+    public function render()
+    {
+        return view('livewire.team-player-selection');
     }
 }

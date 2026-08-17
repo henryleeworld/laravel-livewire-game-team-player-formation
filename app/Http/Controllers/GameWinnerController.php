@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreGameWinnerRequest;
 use App\Models\Game;
-use Illuminate\Http\Request;
 
 class GameWinnerController extends Controller
 {
@@ -18,7 +17,7 @@ class GameWinnerController extends Controller
         $places = [];
 
         for ($i = 1; $i <= $game->users->count(); $i++) {
-            $places[$i] = 'Place ' . $i;
+            $places[$i] = __('Place :place', ['place' => $i]);
         }
 
         return view('games.winners', compact('game', 'places'));

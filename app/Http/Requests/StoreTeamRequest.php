@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreTeamRequest extends FormRequest
@@ -17,7 +18,7 @@ class StoreTeamRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
@@ -39,9 +40,9 @@ class StoreTeamRequest extends FormRequest
         return [
             'players.*.id.required' => __('The player field is required.'),
             'players.*.id.exists' => __('The selected player is invalid.'),
-            'players.*.id.distinct' => __('Player cannot be selected twice'),
-            'players.*.position.required' => __('Player position is required'),
-            'players.*.position.distinct' => __('Player positions must be unique'),
+            'players.*.id.distinct' => __('Player cannot be selected twice.'),
+            'players.*.position.required' => __('Player position is required.'),
+            'players.*.position.distinct' => __('Player positions must be unique.'),
         ];
     }
 }
